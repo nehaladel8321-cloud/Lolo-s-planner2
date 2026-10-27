@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>✨ Study Glow</title>
+    <title>🌈 Colorful Family Planner · 3 Kids + Mom</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg-0: #fff5fb; --bg-1: #ffeef8; --bg-2: #f3eeff;
-            --card: #ffffff; --card-2: #fff8fe; --border: #ffd6ec;
-            --text: #3d1e5c; --muted: #a17ab8;
-            --pink: #ff5fa2; --coral: #ff8a5b; --yellow: #ffd23f;
-            --mint: #4ee1a0; --sky: #4dc9ff; --lavender: #b57aff; --purple: #8b5cf6;
+            /* Bright rainbow palette */
+            --bg-0: #fff4e6; --bg-1: #ffe9f3; --bg-2: #e8f5ff; --bg-3: #f0ffe8;
+            --card: #ffffff; --card-2: #fffdf7; --border: #ffd166;
+            --text: #1e2a4a; --muted: #6b7a99;
+            --pink: #ff4d8d; --coral: #ff7a45; --yellow: #ffc93c;
+            --mint: #2ec4a6; --sky: #2ab8ff; --lavender: #a855f7; --purple: #7c3aed;
+            --kid1: #ff4d8d;   /* Emma - hot pink */
+            --kid2: #2ab8ff;   /* Leo - bright sky */
+            --kid3: #2ec4a6;   /* Mia - bright mint */
+            --mom:  #a855f7;   /* Mom - bright purple */
+            --red: #ff3b30; --orange: #ff9500; --green: #34c759; --blue: #007aff;
         }
         html, body {
-            background: linear-gradient(135deg, #fff5fb 0%, #f3eeff 50%, #e8f7ff 100%);
+            background:
+                linear-gradient(135deg, #fff4e6 0%, #ffe9f3 25%, #e8f5ff 50%, #f0ffe8 75%, #fff4e6 100%);
             background-attachment: fixed; min-height: 100vh; color: var(--text);
             font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased; padding: 14px 12px 40px;
@@ -26,177 +33,1664 @@
         body::before {
             content: ''; position: fixed; inset: 0;
             background:
-                radial-gradient(circle at 15% 20%, rgba(255,95,162,0.12) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(181,122,255,0.12) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(77,201,255,0.08) 0%, transparent 50%);
+                radial-gradient(circle at 10% 15%, rgba(255,77,141,0.18) 0%, transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(42,184,255,0.18) 0%, transparent 30%),
+                radial-gradient(circle at 20% 80%, rgba(46,196,166,0.18) 0%, transparent 30%),
+                radial-gradient(circle at 80% 85%, rgba(168,85,247,0.18) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(255,201,60,0.10) 0%, transparent 40%);
             pointer-events: none; z-index: 0;
         }
 
-        .app-header { position: relative; z-index: 1; width: 100%; max-width: 1100px; margin-bottom: 18px; text-align: center; }
+        .app-header { position: relative; z-index: 1; width: 100%; max-width: 1100px; margin-bottom: 14px; text-align: center; }
         h1 {
             font-family: 'Fredoka', sans-serif; font-size: 2.4rem; font-weight: 700;
             letter-spacing: -0.01em;
-            background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 50%, var(--sky) 100%);
+            background: linear-gradient(90deg, #ff4d8d 0%, #ff9500 20%, #ffc93c 40%, #2ec4a6 60%, #2ab8ff 80%, #a855f7 100%);
             -webkit-background-clip: text; background-clip: text; color: transparent;
-            filter: drop-shadow(0 4px 12px rgba(255,95,162,0.25)); margin-bottom: 6px;
+            filter: drop-shadow(0 4px 10px rgba(255,77,141,0.25)); margin-bottom: 4px;
         }
         .subhead {
-            font-size: 0.85rem; font-weight: 500; color: var(--muted);
-            letter-spacing: 0.08em; text-transform: uppercase;
+            font-size: 0.82rem; font-weight: 600; color: #7c3aed;
+            letter-spacing: 0.05em; text-transform: uppercase;
             display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .subhead .dot {
-            width: 6px; height: 6px; border-radius: 50%; background: var(--mint);
-            display: inline-block; box-shadow: 0 0 10px var(--mint); animation: pulse 2s infinite;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+            display: inline-block; box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
 
         .page-nav {
             position: relative; z-index: 1;
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-            margin-bottom: 22px; width: 100%; max-width: 1100px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+            margin-bottom: 18px; width: 100%; max-width: 1100px;
         }
         .nav-btn {
-            background: var(--card); border: 2px solid var(--border); border-radius: 16px;
-            padding: 10px 16px; font-size: 0.85rem; font-weight: 600;
+            background: var(--card); border: 2px solid var(--border); border-radius: 14px;
+            padding: 8px 13px; font-size: 0.78rem; font-weight: 700;
             font-family: 'Outfit', sans-serif; color: var(--text); cursor: pointer;
-            transition: all 0.18s ease; display: flex; align-items: center; gap: 6px;
-            letter-spacing: 0.02em; box-shadow: 0 3px 0 rgba(255,95,162,0.15);
+            transition: all 0.18s ease; display: flex; align-items: center; gap: 5px;
+            letter-spacing: 0.01em; box-shadow: 0 3px 0 rgba(0,0,0,0.08);
         }
-        .nav-btn:hover { border-color: var(--pink); transform: translateY(-2px); box-shadow: 0 5px 0 rgba(255,95,162,0.2); }
+        .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 rgba(0,0,0,0.1); }
         .nav-btn.active {
-            background: linear-gradient(135deg, var(--pink), var(--lavender));
-            border-color: transparent; color: #fff; box-shadow: 0 4px 0 rgba(139,92,246,0.4);
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            border-color: transparent; color: #fff; box-shadow: 0 4px 0 rgba(124,58,237,0.5);
         }
-        .nav-btn.bank-btn { background: linear-gradient(135deg, #e0f7ff, #d4f4ff); border-color: #b8e8ff; color: #0a6b8a; }
+        .nav-btn.bank-btn { background: linear-gradient(135deg, #e0f6ff, #d0ecff); border-color: #8cd4ff; color: #0066cc; }
         .nav-btn.bank-btn.active {
-            background: linear-gradient(135deg, var(--sky), #2a9bc0); color: #fff;
-            box-shadow: 0 4px 0 rgba(77,201,255,0.4);
+            background: linear-gradient(135deg, var(--sky), #007aff); color: #fff;
+            box-shadow: 0 4px 0 rgba(0,122,255,0.5);
         }
-        .nav-btn.rewards-btn { background: linear-gradient(135deg, #fff5d4, #ffecd4); border-color: #ffd88a; color: #8a6d00; }
+        .nav-btn.rewards-btn { background: linear-gradient(135deg, #fff5d4, #ffe8a8); border-color: #ffc93c; color: #b36b00; }
         .nav-btn.rewards-btn.active {
-            background: linear-gradient(135deg, var(--yellow), #ffa53f); color: #6a4500;
-            box-shadow: 0 4px 0 rgba(255,165,63,0.5);
+            background: linear-gradient(135deg, var(--yellow), var(--orange)); color: #fff;
+            box-shadow: 0 4px 0 rgba(255,149,0,0.5);
         }
 
         .page-content { position: relative; z-index: 1; width: 100%; max-width: 1100px; }
 
         .day-title {
-            font-family: 'Fredoka', sans-serif; font-size: 2.1rem; font-weight: 700;
-            text-align: center; letter-spacing: -0.01em; margin-bottom: 6px;
-            background: linear-gradient(135deg, var(--pink), var(--coral));
+            font-family: 'Fredoka', sans-serif; font-size: 2rem; font-weight: 700;
+            text-align: center; letter-spacing: -0.01em; margin-bottom: 4px;
+            background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow));
             -webkit-background-clip: text; background-clip: text; color: transparent;
         }
         .day-progress {
-            text-align: center; font-size: 0.85rem; font-weight: 600;
-            color: var(--muted); margin-bottom: 20px;
-            text-transform: uppercase; letter-spacing: 0.1em;
+            text-align: center; font-size: 0.82rem; font-weight: 700;
+            color: var(--muted); margin-bottom: 16px;
+            text-transform: uppercase; letter-spacing: 0.08em;
         }
-        .day-progress.complete { color: var(--mint); text-shadow: 0 0 12px rgba(78,225,160,0.4); }
+        .day-progress.complete {
+            color: var(--green);
+            text-shadow: 0 0 12px rgba(52,199,89,0.4);
+        }
 
+        /* Subject block with bright color coding */
         .subject-block {
-            background: var(--card); border: 2px solid var(--border); border-radius: 22px;
-            padding: 16px; margin-bottom: 14px; transition: all 0.2s;
-            box-shadow: 0 4px 0 rgba(255,95,162,0.08), 0 2px 12px rgba(181,122,255,0.08);
+            background: var(--card); border: 2px solid var(--border); border-radius: 20px;
+            padding: 14px; margin-bottom: 12px; transition: all 0.2s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.06), 0 2px 12px rgba(0,0,0,0.04);
+            border-left-width: 8px;
         }
         .subject-block:hover {
-            border-color: var(--pink);
-            box-shadow: 0 6px 0 rgba(255,95,162,0.12), 0 4px 16px rgba(181,122,255,0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 rgba(0,0,0,0.08), 0 6px 18px rgba(0,0,0,0.08);
         }
+        .subject-block.kid1 { border-left-color: var(--kid1); background: linear-gradient(to right, #fff0f6, #ffffff 30%); }
+        .subject-block.kid2 { border-left-color: var(--kid2); background: linear-gradient(to right, #eef9ff, #ffffff 30%); }
+        .subject-block.kid3 { border-left-color: var(--kid3); background: linear-gradient(to right, #eefff8, #ffffff 30%); }
+        .subject-block.mom  { border-left-color: var(--mom);  background: linear-gradient(to right, #f7eeff, #ffffff 30%); }
+
         .subject-header {
             display: flex; align-items: center; justify-content: space-between;
-            gap: 10px; cursor: pointer; user-select: none;
+            gap: 8px; cursor: pointer; user-select: none;
             padding-bottom: 0; margin-bottom: 0;
             border-bottom: none;
             transition: all 0.15s ease;
         }
         .subject-block.expanded .subject-header {
-            padding-bottom: 12px; margin-bottom: 14px;
+            padding-bottom: 10px; margin-bottom: 12px;
             border-bottom: 2px dashed var(--border);
         }
         .subject-name-display {
-            font-family: 'Fredoka', sans-serif; font-size: 1.25rem; font-weight: 600;
+            font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 600;
             color: var(--text); flex: 1; letter-spacing: -0.01em;
-            display: flex; align-items: center; gap: 8px;
+            display: flex; align-items: center; gap: 6px;
         }
         .subject-chevron {
-            font-size: 0.9rem; color: var(--pink); transition: transform 0.25s ease;
+            font-size: 0.8rem; color: var(--pink); transition: transform 0.25s ease;
             display: inline-block;
         }
         .subject-block.expanded .subject-chevron { transform: rotate(90deg); }
         .subject-task-count {
-            font-size: 0.75rem; font-weight: 600; color: var(--muted);
-            background: var(--card-2); padding: 3px 8px; border-radius: 10px;
-            border: 1.5px solid var(--border);
+            font-size: 0.7rem; font-weight: 700; color: var(--text);
+            background: #fff8e1; padding: 3px 8px; border-radius: 10px;
+            border: 1.5px solid var(--yellow);
         }
         .subject-body { display: none; }
         .subject-block.expanded .subject-body { display: block; animation: slideDown 0.22s ease; }
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-6px); }
+            from { opacity: 0; transform: translateY(-4px); }
             to { opacity: 1; transform: none; }
         }
 
         .btn-icon {
-            background: #fff0f8; border: 2px solid #ffd6ec; border-radius: 12px;
-            width: 36px; height: 36px; font-size: 1rem; cursor: pointer;
+            background: #fff0f6; border: 2px solid #ffb3d1; border-radius: 10px;
+            width: 32px; height: 32px; font-size: 0.9rem; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             color: var(--pink); transition: all 0.15s ease;
             font-family: inherit; flex-shrink: 0;
         }
-        .btn-icon:hover { background: var(--pink); color: #fff; border-color: var(--pink); transform: scale(1.08); }
+        .btn-icon:hover { background: var(--pink); color: #fff; border-color: var(--pink); transform: scale(1.1) rotate(90deg); }
 
         .btn-add-task {
-            background: #e8fff4; border: 2px dashed var(--mint); border-radius: 14px;
-            padding: 10px 16px; font-size: 0.88rem; font-weight: 600; color: #0a8055;
-            cursor: pointer; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #e8fff4, #d4f4e4); border: 2px dashed var(--green); border-radius: 12px;
+            padding: 8px 14px; font-size: 0.82rem; font-weight: 700; color: #1a7a3a;
+            cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; gap: 5px;
             font-family: inherit; transition: all 0.15s ease; letter-spacing: 0.02em;
         }
-        .btn-add-task:hover { background: #d4ffe8; transform: translateY(-1px); }
+        .btn-add-task:hover { background: linear-gradient(135deg, #d4ffe4, #c0f0d4); transform: translateY(-1px); }
         .btn-add-task:disabled {
             opacity: 0.4; cursor: not-allowed; border-style: solid;
             color: var(--muted); background: #f5f5f5; border-color: #ddd;
         }
 
         .btn-add-subject {
-            background: linear-gradient(135deg, #ffe0f0, #f3e0ff);
-            border: 2.5px dashed var(--pink); border-radius: 22px; padding: 22px;
-            font-size: 1.05rem; font-weight: 700; color: var(--pink); cursor: pointer;
+            background: linear-gradient(135deg, #ffe0f0, #e0f0ff, #e0ffe8);
+            border: 2.5px dashed var(--pink); border-radius: 20px; padding: 18px;
+            font-size: 1rem; font-weight: 700; color: var(--pink); cursor: pointer;
             width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
             font-family: 'Fredoka', sans-serif; transition: all 0.18s ease;
-            margin-top: 8px; letter-spacing: 0.02em;
+            margin-top: 6px; letter-spacing: 0.02em;
         }
         .btn-add-subject:hover {
-            background: linear-gradient(135deg, #ffcce5, #e8d0ff);
-            transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,95,162,0.25);
+            background: linear-gradient(135deg, #ffcce5, #cce4ff, #ccffdd);
+            transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,77,141,0.25);
         }
         .btn-add-subject:active { transform: translateY(0); }
 
         /* ---- TASK ITEMS ---- */
-        .task-list { display: flex; flex-direction: column; gap: 10px; }
+        .task-list { display: flex; flex-direction: column; gap: 8px; }
         .task-item {
-            display: flex; flex-direction: column; gap: 8px;
-            background: var(--card-2); border-radius: 16px;
-            padding: 12px; border: 1.5px solid var(--border);
+            display: flex; flex-direction: column; gap: 6px;
+            background: #fffef9; border-radius: 14px;
+            padding: 10px; border: 1.5px solid #ffe9b8;
             transition: all 0.15s ease;
         }
-        .task-item:hover { border-color: var(--lavender); }
-        .task-item.done { background: #f6fff9; border-color: #c8f5d8; }
+        .task-item:hover { border-color: var(--yellow); background: #fffef0; }
+        .task-item.done { background: #f0fff4; border-color: #b8f0c8; }
 
-        .task-main-row { display: flex; align-items: center; gap: 10px; }
+        .task-main-row { display: flex; align-items: center; gap: 8px; }
         .task-text-display {
-            flex: 1; font-size: 0.95rem; font-weight: 500;
+            flex: 1; font-size: 0.9rem; font-weight: 500;
             color: var(--text); min-width: 0; word-break: break-word;
         }
         .task-item.done .task-text-display { color: var(--muted); text-decoration: line-through; }
 
         .task-check {
-            background: #fff; border: 2px solid var(--border); border-radius: 50%;
-            width: 28px; height: 28px; font-size: 0.9rem; cursor: pointer;
+            background: #fff; border: 2.5px solid #ffd166; border-radius: 50%;
+            width: 26px; height: 26px; font-size: 0.85rem; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            color: var(--muted); transition: all 0.15s ease;
+            color: var(--muted); transition: all 0.18s ease;
             flex-shrink: 0; padding: 0; line-height: 1; font-family: inherit;
         }
-        .task-check:hover { border-color: var(--mint); background: #e8fff4; }
+        .task-check:hover { border-color: var(--green); background: #e8fff4; transform: scale(1.1); }
         .task-check.done {
-            background: var(--mint); border-color: var(--mint); color: #fff;
-            box-shadow: 0 0 12
+            background: linear-gradient(135deg, var(--green), #28a745);
+            border-color: var(--green); color: #fff;
+            box-shadow: 0 0 14px rgba(52,199,89,0.6);
+        }
+
+        .task-remove {
+            background: transparent; border: none; color: var(--muted);
+            font-size: 1rem; cursor: pointer; width: 26px; height: 26px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 7px; flex-shrink: 0; padding: 0; line-height: 1; font-family: inherit;
+            transition: all 0.15s ease;
+        }
+        .task-remove:hover { background: #ffe0e8; color: var(--red); }
+
+        /* Extras section */
+        .task-extras { display: flex; flex-direction: column; gap: 5px; padding-left: 34px; }
+        .extras-toggle {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: #eef7ff; border: 1.5px solid #b8e0ff; border-radius: 9px;
+            padding: 4px 9px; font-size: 0.72rem; font-weight: 700;
+            color: #0066cc; cursor: pointer; font-family: inherit;
+            align-self: flex-start; transition: all 0.15s ease;
+        }
+        .extras-toggle:hover { background: #dcefff; }
+        .extras-toggle .badge {
+            background: var(--blue); color: #fff; border-radius: 7px;
+            padding: 0px 5px; font-size: 0.65rem; font-weight: 700;
+        }
+        .extras-panel {
+            display: flex; flex-direction: column; gap: 5px;
+            background: #f8fbff; border: 1.5px dashed #b8e0ff;
+            border-radius: 10px; padding: 7px; margin-top: 2px;
+        }
+
+        .link-item, .note-item {
+            display: flex; align-items: center; gap: 5px;
+            background: #fff; border: 1.5px solid var(--border);
+            border-radius: 9px; padding: 5px 7px;
+        }
+        .link-item { border-color: #b8e0ff; background: #f6faff; }
+        .note-item { border-color: #ffd8b8; background: #fffaf5; align-items: flex-start; }
+
+        .link-icon { font-size: 0.85rem; flex-shrink: 0; padding-top: 2px; }
+        .link-input {
+            flex: 1; border: none; background: transparent;
+            font-size: 0.78rem; font-family: inherit;
+            color: #0066cc; min-width: 0; text-decoration: none;
+            padding: 2px 0;
+        }
+        .link-input:focus { outline: none; }
+        .link-input::placeholder { color: #8ab0c8; }
+        .link-open {
+            font-size: 0.72rem; background: var(--blue); color: #fff;
+            border: none; border-radius: 5px; padding: 2px 7px;
+            font-weight: 700; cursor: pointer; font-family: inherit;
+            flex-shrink: 0; text-decoration: none;
+        }
+        .link-open:hover { background: #0055cc; }
+
+        .note-textarea {
+            flex: 1; border: none; background: transparent;
+            font-size: 0.78rem; font-family: inherit;
+            color: #8a5a20; min-width: 0; resize: vertical;
+            min-height: 24px; padding: 2px 0; line-height: 1.4;
+            max-height: 180px; overflow: hidden;
+        }
+        .note-textarea:focus { outline: none; }
+        .note-textarea::placeholder { color: #c0a080; }
+
+        .remove-mini {
+            background: transparent; border: none; color: var(--muted);
+            font-size: 0.85rem; cursor: pointer; width: 20px; height: 20px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 5px; flex-shrink: 0; padding: 0; line-height: 1; font-family: inherit;
+        }
+        .remove-mini:hover { background: #ffe0e8; color: var(--red); }
+
+        .extras-add-row { display: flex; gap: 5px; margin-top: 2px; }
+        .extras-add-btn {
+            flex: 1; background: #fff; border: 1.5px dashed #b8e0ff;
+            border-radius: 7px; padding: 5px 7px;
+            font-size: 0.7rem; font-weight: 700;
+            color: #0066cc; cursor: pointer; font-family: inherit;
+            transition: all 0.15s ease;
+        }
+        .extras-add-btn:hover { background: #e8f4ff; }
+        .extras-add-btn.note-add { border-color: #ffc89a; color: #cc7a00; }
+        .extras-add-btn.note-add:hover { background: #fff4e8; }
+
+        .empty-hint {
+            font-size: 0.82rem; color: var(--muted); font-style: italic;
+            padding: 14px 10px; text-align: center;
+            border: 2px dashed var(--border); border-radius: 12px;
+            margin-bottom: 4px; background: var(--card-2);
+        }
+
+        /* BANK PAGE */
+        .bank-title {
+            font-family: 'Fredoka', sans-serif; font-size: 1.8rem; font-weight: 700;
+            text-align: center; letter-spacing: -0.01em; margin-bottom: 4px;
+            background: linear-gradient(90deg, var(--sky), var(--green));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .bank-sub { text-align: center; font-size: 0.82rem; color: var(--muted);
+            margin-bottom: 16px; letter-spacing: 0.03em; }
+
+        .btn-add-bank-subject {
+            background: linear-gradient(135deg, #e0f6ff, #e8f0ff);
+            border: 2.5px dashed var(--sky); border-radius: 16px;
+            padding: 14px; font-size: 0.9rem; font-weight: 700; color: #0066cc;
+            cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-family: 'Fredoka', sans-serif; transition: all 0.18s ease;
+            margin-bottom: 16px; letter-spacing: 0.02em;
+        }
+        .btn-add-bank-subject:hover {
+            background: linear-gradient(135deg, #c8eefc, #d8e4fc);
+            transform: translateY(-2px); box-shadow: 0 6px 20px rgba(42,184,255,0.25);
+        }
+
+        .bank-subject-card {
+            background: var(--card); border: 2px solid var(--border); border-radius: 18px;
+            padding: 14px; margin-bottom: 12px; box-shadow: 0 4px 0 rgba(42,184,255,0.08);
+            border-left-width: 8px; border-left-color: var(--sky);
+        }
+        .bank-subject-header {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 12px; padding-bottom: 10px;
+            border-bottom: 2px dashed var(--border);
+        }
+        .bank-subject-name-input {
+            font-family: 'Fredoka', sans-serif; font-size: 1.05rem; font-weight: 700;
+            color: var(--blue); background: transparent;
+            border: 1.5px solid transparent; border-radius: 9px;
+            padding: 5px 9px; flex: 1; min-width: 100px; transition: 0.15s;
+        }
+        .bank-subject-name-input:hover { border-color: var(--border); }
+        .bank-subject-name-input:focus { outline: none; border-color: var(--sky); background: #f0faff; }
+
+        .bank-item {
+            display: flex; flex-direction: column; gap: 6px;
+            background: #fffef9; border-radius: 12px;
+            padding: 8px 10px; margin-bottom: 8px;
+            border: 1.5px solid #ffe9b8; transition: all 0.15s;
+        }
+        .bank-item:hover { border-color: var(--sky); background: #f8fcff; }
+        .bank-main-row { display: flex; align-items: center; gap: 8px; }
+        .bank-task-input {
+            flex: 1; font-size: 0.86rem; font-weight: 500; color: var(--text);
+            background: transparent; border: none;
+            border-bottom: 1.5px solid transparent; padding: 3px 2px;
+            font-family: inherit; min-width: 0;
+        }
+        .bank-task-input:focus { outline: none; border-bottom-color: var(--sky); }
+
+        .bank-add-row {
+            display: flex; gap: 7px; margin-top: 8px;
+            background: #f8fbff; border: 1.5px solid var(--border);
+            border-radius: 12px; padding: 7px;
+        }
+        .bank-add-row input {
+            flex: 1; background: transparent; border: none; color: var(--text);
+            font-size: 0.86rem; font-family: inherit; padding: 5px 7px;
+        }
+        .bank-add-row input:focus { outline: none; }
+        .bank-add-row input::placeholder { color: var(--muted); }
+        .bank-add-row button {
+            background: linear-gradient(135deg, var(--sky), #007aff);
+            border: none; border-radius: 9px; padding: 7px 14px;
+            font-weight: 700; font-size: 0.82rem; color: #fff;
+            cursor: pointer; font-family: 'Outfit', sans-serif;
+            flex-shrink: 0; transition: all 0.15s ease;
+            box-shadow: 0 3px 0 rgba(0,122,255,0.4);
+        }
+        .bank-add-row button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 0 rgba(0,122,255,0.4), 0 4px 10px rgba(42,184,255,0.4);
+        }
+
+        /* ---- REWARDS PAGE ---- */
+        .rewards-title {
+            font-family: 'Fredoka', sans-serif; font-size: 1.9rem; font-weight: 700;
+            text-align: center; letter-spacing: -0.01em; margin-bottom: 4px;
+            background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .rewards-sub {
+            text-align: center; font-size: 0.82rem; color: var(--muted);
+            margin-bottom: 18px; letter-spacing: 0.03em; line-height: 1.5;
+        }
+        .rewards-summary {
+            display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .rewards-stat {
+            background: var(--card); border: 2px solid var(--border); border-radius: 14px;
+            padding: 12px 18px; text-align: center;
+            box-shadow: 0 4px 0 rgba(255,201,60,0.25);
+            min-width: 100px;
+        }
+        .rewards-stat .num {
+            font-family: 'Fredoka', sans-serif; font-size: 1.9rem; font-weight: 700;
+            background: linear-gradient(90deg, var(--orange), var(--pink));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            line-height: 1;
+        }
+        .rewards-stat .label {
+            font-size: 0.68rem; text-transform: uppercase; font-weight: 700;
+            color: var(--muted); margin-top: 3px; letter-spacing: 0.07em;
+        }
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px; margin-bottom: 20px;
+        }
+        .badge-card {
+            background: var(--card); border: 2.5px solid var(--border); border-radius: 18px;
+            padding: 14px 8px; text-align: center;
+            transition: all 0.2s ease; position: relative;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.06);
+        }
+        .badge-card.earned {
+            border-color: var(--yellow);
+            background: linear-gradient(160deg, #fffbe8, #fff3c4);
+            box-shadow: 0 6px 0 rgba(255,149,0,0.3), 0 0 24px rgba(255,201,60,0.5);
+            animation: earnedGlow 3s ease infinite;
+        }
+        @keyframes earnedGlow {
+            0%, 100% { box-shadow: 0 6px 0 rgba(255,149,0,0.3), 0 0 18px rgba(255,201,60,0.4); }
+            50% { box-shadow: 0 6px 0 rgba(255,149,0,0.3), 0 0 32px rgba(255,201,60,0.7); }
+        }
+        .badge-emoji {
+            font-size: 2.5rem; line-height: 1;
+            filter: grayscale(1) opacity(0.35);
+            transition: filter 0.3s;
+        }
+        .badge-card.earned .badge-emoji {
+            filter: drop-shadow(0 0 8px rgba(255,149,0,0.6));
+        }
+        .badge-name {
+            font-family: 'Fredoka', sans-serif; font-size: 0.8rem; font-weight: 700;
+            margin-top: 5px; color: var(--text);
+            line-height: 1.2;
+        }
+        .badge-card.earned .badge-name { color: #b36b00; }
+        .badge-day {
+            font-size: 0.62rem; color: var(--muted); margin-top: 3px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .badge-card.earned .badge-day { color: #cc7a00; }
+        .badge-lock {
+            position: absolute; top: 6px; right: 8px;
+            font-size: 0.8rem; opacity: 0.5;
+        }
+        .badge-card.earned .badge-lock { display: none; }
+        .badge-check {
+            position: absolute; top: 6px; right: 8px;
+            font-size: 0.9rem;
+        }
+
+        .gift-section {
+            background: var(--card); border: 2px dashed var(--yellow); border-radius: 20px;
+            padding: 16px; margin-top: 8px;
+        }
+        .gift-title {
+            font-family: 'Fredoka', sans-serif; font-size: 1.2rem; font-weight: 700;
+            color: #b36b00; text-align: center; margin-bottom: 4px;
+        }
+        .gift-desc {
+            text-align: center; font-size: 0.8rem; color: var(--muted);
+            margin-bottom: 12px; line-height: 1.5;
+        }
+        .gift-progress-outer {
+            background: #fff3d4; border: 2px solid #ffd88a; border-radius: 18px;
+            height: 24px; overflow: hidden; position: relative;
+            margin-bottom: 6px;
+        }
+        .gift-progress-inner {
+            height: 100%; border-radius: 16px; width: 0%;
+            background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
+            transition: width 0.5s ease;
+            display: flex; align-items: center; justify-content: flex-end;
+            padding-right: 7px; color: #fff; font-weight: 700; font-size: 0.7rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        }
+        .gift-progress-label {
+            text-align: center; font-size: 0.8rem; font-weight: 700;
+            color: #b36b00;
+        }
+        .gift-unlock {
+            text-align: center; padding: 12px; margin-top: 10px;
+            background: linear-gradient(135deg, #fffbe8, #fff3c4);
+            border-radius: 14px; border: 2px solid var(--yellow);
+        }
+        .gift-unlock .gift-emoji { font-size: 2.2rem; }
+        .gift-unlock .gift-msg {
+            font-family: 'Fredoka', sans-serif; font-size: 0.95rem; font-weight: 700;
+            color: #b36b00; margin-top: 4px;
+        }
+        .gift-unlock .gift-hint {
+            font-size: 0.7rem; color: var(--muted); margin-top: 3px;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(30,42,74,0.45);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10001; padding: 16px; animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-box {
+            background: #fff; border: 2px solid var(--pink); border-radius: 22px;
+            padding: 20px; max-width: 440px; width: 100%; max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 40px rgba(255,77,141,0.3), 0 20px 50px rgba(30,42,74,0.2);
+        }
+        .modal-title {
+            font-family: 'Fredoka', sans-serif; font-weight: 700;
+            font-size: 1.2rem; color: var(--text); margin-bottom: 14px;
+            text-align: center; letter-spacing: -0.01em;
+        }
+        .modal-item {
+            display: block; width: 100%; text-align: left;
+            background: #fffef9; border: 2px solid var(--border);
+            border-radius: 12px; padding: 10px 14px;
+            font-size: 0.9rem; font-family: inherit; color: var(--text);
+            cursor: pointer; margin-bottom: 7px; transition: all 0.15s ease;
+            font-weight: 600;
+        }
+        .modal-item:hover { background: #fff0f8; border-color: var(--pink); transform: translateX(3px); }
+        .modal-item.special {
+            background: linear-gradient(135deg, #e8fff4, #e0f6ff);
+            border-color: var(--green); color: #1a7a3a; font-weight: 700;
+        }
+        .modal-item.special:hover { background: linear-gradient(135deg, #d4ffe4, #c8eefc); border-color: var(--green); }
+        .modal-empty { text-align: center; color: var(--muted); padding: 18px; font-size: 0.85rem; line-height: 1.5; }
+        .modal-cancel {
+            display: block; width: 100%; background: transparent;
+            border: 2px solid var(--border); border-radius: 12px; padding: 10px;
+            font-weight: 700; font-size: 0.85rem; color: var(--muted);
+            cursor: pointer; margin-top: 6px; font-family: inherit; transition: all 0.15s ease;
+        }
+        .modal-cancel:hover { background: var(--card-2); color: var(--text); border-color: var(--pink); }
+
+        /* CELEBRATIONS */
+        .celebration-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; display: flex; align-items: center; justify-content: center;
+            z-index: 9999; visibility: hidden;
+        }
+        .celebration-overlay.active { visibility: visible; animation: popFade 1.8s ease forwards; }
+        .confetti-burst {
+            font-size: 5rem; filter: drop-shadow(0 0 30px rgba(255,77,141,0.6));
+            animation: floatUp 1.6s ease-out;
+            display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center;
+        }
+        @keyframes popFade {
+            0% { opacity: 0; transform: scale(0.7); } 20% { opacity: 1; transform: scale(1.1); }
+            40% { transform: scale(1); } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(30px) rotate(-5deg); opacity: 0; }
+            20% { opacity: 1; transform: translateY(-10px) rotate(5deg); }
+            60% { transform: translateY(-30px) rotate(-3deg); }
+            100% { transform: translateY(-80px) rotate(10deg); opacity: 0; }
+        }
+
+        .full-day-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(255,77,141,0.95), rgba(168,85,247,0.95));
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 10000; visibility: hidden; pointer-events: none;
+            text-align: center; padding: 20px;
+        }
+        .full-day-overlay.active { visibility: visible; animation: fullDayAnim 3.4s ease forwards; }
+        @keyframes fullDayAnim {
+            0% { opacity: 0; transform: scale(0.6); } 15% { opacity: 1; transform: scale(1.05); }
+            25% { transform: scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(1.15); }
+        }
+        .full-day-overlay .big-emoji {
+            font-size: 7rem; animation: bounceBig 0.8s ease infinite alternate;
+            filter: drop-shadow(0 0 40px rgba(255,201,60,0.8));
+        }
+        @keyframes bounceBig {
+            from { transform: translateY(0) rotate(-8deg) scale(1); }
+            to { transform: translateY(-22px) rotate(8deg) scale(1.08); }
+        }
+        .full-day-overlay .msg {
+            font-family: 'Fredoka', sans-serif; font-size: 2.6rem; font-weight: 700;
+            letter-spacing: -0.01em; color: #fff; margin: 16px 0 12px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 30px rgba(255,201,60,0.6);
+        }
+        .full-day-overlay .sub-msg {
+            font-size: 1.1rem; font-weight: 600; color: var(--text);
+            background: #fff; padding: 12px 24px; border-radius: 40px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15); letter-spacing: 0.02em;
+        }
+        .full-day-overlay .badge-earned {
+            margin-top: 16px; background: rgba(255,255,255,0.25);
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 10px 20px; border-radius: 36px;
+            display: flex; align-items: center; gap: 8px;
+            color: #fff; font-family: 'Fredoka', sans-serif;
+            font-size: 1rem; font-weight: 600;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .footer-note {
+            position: relative; z-index: 1; margin-top: 20px;
+            font-size: 0.72rem; color: var(--muted);
+            text-align: center; letter-spacing: 0.04em;
+            text-transform: uppercase; font-weight: 600;
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 1.8rem; }
+            .day-title { font-size: 1.5rem; }
+            .bank-title, .rewards-title { font-size: 1.4rem; }
+            .nav-btn { padding: 7px 10px; font-size: 0.72rem; }
+            .full-day-overlay .msg { font-size: 1.9rem; }
+            .badges-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-header">
+        <h1>🌈 Family Day Planner</h1>
+        <div class="subhead">
+            <span class="dot"></span>
+            <span>3 Kids · 1 Mom · Bright &amp; Colorful</span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <div class="page-nav" id="pageNav"></div>
+    <div class="page-content" id="pageContent"></div>
+
+    <div class="footer-note">✦ Every task can hold links & notes — for kids, school, and mom's own time ✦</div>
+
+    <div class="celebration-overlay" id="celebration">
+        <div class="confetti-burst" id="confettiBurst">🎉🎊🥳✨🎈</div>
+    </div>
+    <div class="full-day-overlay" id="fullDayOverlay">
+        <div class="big-emoji" id="fullDayEmoji">🏆</div>
+        <div class="msg" id="fullDayMsg">PERFECT DAY</div>
+        <div class="sub-msg" id="fullDaySubMsg">All tasks complete!</div>
+        <div class="badge-earned" id="fullDayBadge" style="display:none;"></div>
+    </div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        const DAYS = [
+            { name: 'Monday', emoji: '🌅', badge: '☀️', badgeName: 'Monday Ready' },
+            { name: 'Tuesday', emoji: '🌿', badge: '🌿', badgeName: 'Tuesday Calm' },
+            { name: 'Wednesday', emoji: '⭐', badge: '⭐', badgeName: 'Midweek Star' },
+            { name: 'Thursday', emoji: '🌊', badge: '🌊', badgeName: 'Thursday Flow' },
+            { name: 'Friday', emoji: '🎉', badge: '🎉', badgeName: 'Friday Fun' },
+            { name: 'Saturday', emoji: '🏡', badge: '🏡', badgeName: 'Home Sweet Home' },
+            { name: 'Sunday', emoji: '🕊️', badge: '🕊️', badgeName: 'Sunday Rest' }
+        ];
+
+        const GIFTS = [
+            { required: 3, emoji: '☕', name: 'Coffee Break', hint: 'Earn 3 badges' },
+            { required: 5, emoji: '💆', name: 'Spa Time', hint: 'Earn 5 badges' },
+            { required: 7, emoji: '🌴', name: 'Weekend Getaway', hint: 'Earn all 7 badges' }
+        ];
+
+        const KIDS = [
+            { key: 'kid1', label: '👧 Emma (7)', color: 'kid1', emoji: '👧' },
+            { key: 'kid2', label: '👦 Leo (5)', color: 'kid2', emoji: '👦' },
+            { key: 'kid3', label: '🧒 Mia (3)', color: 'kid3', emoji: '🧒' },
+            { key: 'mom',  label: '💆 Mom\'s Me-Time', color: 'mom', emoji: '💆' }
+        ];
+
+        let subjectBank = [];
+        let days = [];
+        let badges = {};
+        let nextId = 1;
+        function genId() { return 'id_' + (nextId++) + '_' + Math.random().toString(36).slice(2,7); }
+
+        const STORAGE_KEY = 'colorfulFamilyPlanner_v1';
+
+        function saveToStorage() {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ subjectBank, days, badges, nextId })); } catch(e) {}
+        }
+        function loadFromStorage() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return;
+                const data = JSON.parse(raw);
+                if (data && Array.isArray(data.subjectBank) && Array.isArray(data.days) && data.days.length === 7) {
+                    subjectBank = data.subjectBank;
+                    days = data.days;
+                    badges = data.badges || {};
+                    nextId = data.nextId || 1;
+                    for (let d = 0; d < 7; d++) if (!Array.isArray(days[d])) days[d] = [];
+                    days.forEach(function(dayArr) {
+                        dayArr.forEach(function(subj) {
+                            (subj.tasks || []).forEach(function(task) {
+                                if (!Array.isArray(task.links)) task.links = [];
+                                if (!Array.isArray(task.notes)) task.notes = [];
+                            });
+                        });
+                    });
+                    subjectBank.forEach(function(bs) {
+                        (bs.tasks || []).forEach(function(task) {
+                            if (!Array.isArray(task.links)) task.links = [];
+                            if (!Array.isArray(task.notes)) task.notes = [];
+                        });
+                    });
+                }
+            } catch(e) {}
+        }
+
+        // ---- sounds ----
+        function playTone(freq, duration, type, vol) {
+            freq = freq || 880; duration = duration || 0.1; type = type || 'sine'; vol = vol || 0.15;
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                osc.type = type; osc.frequency.value = freq; gain.gain.value = vol;
+                osc.connect(gain); gain.connect(ctx.destination); osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+                osc.stop(ctx.currentTime + duration);
+            } catch(e) {}
+        }
+        function playClick() { playTone(700, 0.05, 'sine', 0.08); }
+        function playCheck() { playTone(880, 0.09, 'sine', 0.14); setTimeout(function(){ playTone(1100, 0.07, 'sine', 0.1); }, 60); }
+        function playUncheck() { playTone(500, 0.08, 'sine', 0.1); }
+        function playOpen() { playTone(520, 0.04, 'sine', 0.08); setTimeout(function(){ playTone(700, 0.05, 'sine', 0.08); }, 40); }
+        function playClose() { playTone(600, 0.04, 'sine', 0.07); setTimeout(function(){ playTone(400, 0.05, 'sine', 0.07); }, 40); }
+        function playAdd() { playTone(800, 0.06, 'sine', 0.1); setTimeout(function(){ playTone(1000, 0.06, 'sine', 0.1); }, 70); }
+        function playRemove() { playTone(500, 0.08, 'sawtooth', 0.08); }
+        function playCelebrationSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const now = ctx.currentTime;
+                [523.25, 659.25, 783.99, 1046.50].forEach(function(freq, i) {
+                    const osc = ctx.createOscillator(); const g = ctx.createGain();
+                    osc.type = 'triangle'; osc.frequency.value = freq;
+                    g.gain.setValueAtTime(0.13, now + i * 0.09);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.09 + 0.4);
+                    osc.connect(g); g.connect(ctx.destination);
+                    osc.start(now + i * 0.09); osc.stop(now + i * 0.09 + 0.4);
+                });
+            } catch(e) {}
+        }
+        function playFanfare() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const now = ctx.currentTime;
+                [[523.25,0],[523.25,0.15],[523.25,0.30],[659.25,0.45],[783.99,0.60],[1046.50,0.85],[1046.50,1.05],[1318.51,1.20]]
+                .forEach(function(pair) {
+                    const freq = pair[0], t = pair[1];
+                    const osc = ctx.createOscillator(); const g = ctx.createGain();
+                    osc.type = 'triangle'; osc.frequency.value = freq;
+                    g.gain.setValueAtTime(0.15, now + t);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.5);
+                    osc.connect(g); g.connect(ctx.destination);
+                    osc.start(now + t); osc.stop(now + t + 0.5);
+                });
+            } catch(e) {}
+        }
+
+        // ---- celebrations ----
+        const celebrationOverlay = document.getElementById('celebration');
+        const confettiBurst = document.getElementById('confettiBurst');
+        const fullDayOverlay = document.getElementById('fullDayOverlay');
+        const fullDayEmoji = document.getElementById('fullDayEmoji');
+        const fullDayMsg = document.getElementById('fullDayMsg');
+        const fullDaySubMsg = document.getElementById('fullDaySubMsg');
+        const fullDayBadge = document.getElementById('fullDayBadge');
+
+        function celebrate() {
+            playCelebrationSound();
+            const emojis = ['🎉','🎊','🥳','✨','🎈','🌟','💖','⭐','🔥','💯','⚡','🦄'];
+            let html = '';
+            for (let i = 0; i < 12; i++) html += emojis[Math.floor(Math.random() * emojis.length)];
+            confettiBurst.textContent = html;
+            celebrationOverlay.classList.remove('active');
+            void celebrationOverlay.offsetWidth;
+            celebrationOverlay.classList.add('active');
+            setTimeout(function() { celebrationOverlay.classList.remove('active'); }, 1800);
+        }
+        const fullDayRewards = [
+            { emoji: '🏆', msg: 'SUPER MOM DAY', sub: 'All tasks done — you\'re amazing! 💪' },
+            { emoji: '🌟', msg: 'SHINING STAR', sub: 'Every single task complete!' },
+            { emoji: '💖', msg: 'HEART FULL', sub: 'You did it for the family!' },
+            { emoji: '🦸‍♀️', msg: 'SUPERWOMAN', sub: 'Nothing left behind!' },
+            { emoji: '👑', msg: 'QUEEN OF THE DAY', sub: 'You ran this day!' }
+        ];
+        function celebrateFullDay(dayIdx) {
+            playFanfare();
+            const r = fullDayRewards[Math.floor(Math.random() * fullDayRewards.length)];
+            fullDayEmoji.textContent = r.emoji;
+            fullDayMsg.textContent = r.msg;
+            fullDaySubMsg.textContent = r.sub;
+
+            if (dayIdx !== undefined && DAYS[dayIdx]) {
+                fullDayBadge.style.display = 'flex';
+                fullDayBadge.innerHTML = '<span style="font-size:1.4rem;">' + DAYS[dayIdx].badge + '</span><span>Badge earned: ' + DAYS[dayIdx].badgeName + '</span>';
+            } else {
+                fullDayBadge.style.display = 'none';
+            }
+
+            fullDayOverlay.classList.remove('active');
+            void fullDayOverlay.offsetWidth;
+            fullDayOverlay.classList.add('active');
+            setTimeout(function() { fullDayOverlay.classList.remove('active'); }, 3400);
+        }
+
+        // ---- nav ----
+        let currentPage = 'day0';
+        const pageNav = document.getElementById('pageNav');
+        const pageContent = document.getElementById('pageContent');
+
+        function renderNav() {
+            pageNav.innerHTML = '';
+            DAYS.forEach(function(day, idx) {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn' + (currentPage === 'day' + idx ? ' active' : '');
+                btn.innerHTML = day.emoji + ' ' + day.name;
+                btn.addEventListener('click', function() { playClick(); goToPage('day' + idx); });
+                pageNav.appendChild(btn);
+            });
+            const bankBtn = document.createElement('button');
+            bankBtn.className = 'nav-btn bank-btn' + (currentPage === 'bank' ? ' active' : '');
+            bankBtn.innerHTML = '📋 Task Banks';
+            bankBtn.addEventListener('click', function() { playClick(); goToPage('bank'); });
+            pageNav.appendChild(bankBtn);
+            const rewardsBtn = document.createElement('button');
+            rewardsBtn.className = 'nav-btn rewards-btn' + (currentPage === 'rewards' ? ' active' : '');
+            rewardsBtn.innerHTML = '🏆 Rewards';
+            rewardsBtn.addEventListener('click', function() { playClick(); goToPage('rewards'); });
+            pageNav.appendChild(rewardsBtn);
+        }
+
+        function goToPage(pageId) {
+            currentPage = pageId;
+            renderNav();
+            renderPage();
+        }
+
+        function renderPage() {
+            pageContent.innerHTML = '';
+            if (currentPage === 'bank') {
+                pageContent.appendChild(renderBankPage());
+            } else if (currentPage === 'rewards') {
+                pageContent.appendChild(renderRewardsPage());
+            } else {
+                const dayIdx = parseInt(currentPage.replace('day', ''), 10);
+                pageContent.appendChild(renderDayPage(dayIdx));
+            }
+        }
+
+        // ---- DAY PAGE ----
+        function renderDayPage(dayIdx) {
+            const wrap = document.createElement('div');
+            const day = DAYS[dayIdx];
+
+            const title = document.createElement('div');
+            title.className = 'day-title';
+            title.textContent = day.emoji + ' ' + day.name;
+            wrap.appendChild(title);
+
+            const prog = document.createElement('div');
+            prog.className = 'day-progress';
+            prog.id = 'day-progress-' + dayIdx;
+            wrap.appendChild(prog);
+
+            if (days[dayIdx].length === 0) {
+                const hint = document.createElement('div');
+                hint.className = 'empty-hint';
+                hint.textContent = 'No activities yet. Tap "＋ Add Activity" below to get started.';
+                wrap.appendChild(hint);
+            } else {
+                days[dayIdx].forEach(function(daySubject, subjIdx) {
+                    wrap.appendChild(renderSubjectBlock(dayIdx, subjIdx, daySubject));
+                });
+            }
+
+            const addSubjBtn = document.createElement('button');
+            addSubjBtn.type = 'button';
+            addSubjBtn.className = 'btn-add-subject';
+            addSubjBtn.textContent = '＋ Add Activity / Person';
+            addSubjBtn.addEventListener('click', function() { playAdd(); openSubjectPicker(dayIdx); });
+            wrap.appendChild(addSubjBtn);
+
+            setTimeout(function() { updateDayProgress(dayIdx); }, 0);
+            return wrap;
+        }
+
+        let expandedState = {};
+        function isExpanded(dayIdx, subjIdx) {
+            return expandedState[dayIdx + '_' + subjIdx] === true;
+        }
+        function setExpanded(dayIdx, subjIdx, val) {
+            expandedState[dayIdx + '_' + subjIdx] = val;
+        }
+
+        function getSubjectColorClass(subj) {
+            const bankSubj = subjectBank.find(function(s) { return s.id === subj.bankSubjectId; });
+            if (!bankSubj) return '';
+            if (bankSubj.category) return bankSubj.category;
+            const n = bankSubj.name.toLowerCase();
+            if (n.includes('emma') || n.includes('kid 1')) return 'kid1';
+            if (n.includes('leo') || n.includes('kid 2')) return 'kid2';
+            if (n.includes('mia') || n.includes('kid 3')) return 'kid3';
+            if (n.includes('mom') || n.includes('me-time') || n.includes('self')) return 'mom';
+            return '';
+        }
+
+        function renderSubjectBlock(dayIdx, subjIdx, daySubject) {
+            const block = document.createElement('div');
+            block.className = 'subject-block ' + getSubjectColorClass(daySubject);
+            const expanded = isExpanded(dayIdx, subjIdx);
+            if (expanded) block.classList.add('expanded');
+
+            const bankSubj = subjectBank.find(function(s) { return s.id === daySubject.bankSubjectId; });
+            const displayName = bankSubj ? bankSubj.name : 'Unknown activity';
+
+            const taskCount = daySubject.tasks.length;
+            const doneCount = daySubject.tasks.filter(function(t){ return t.done; }).length;
+
+            const header = document.createElement('div');
+            header.className = 'subject-header';
+            header.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-icon')) return;
+                const nowExpanded = !isExpanded(dayIdx, subjIdx);
+                setExpanded(dayIdx, subjIdx, nowExpanded);
+                if (nowExpanded) { playOpen(); } else { playClose(); }
+                renderPage();
+            });
+
+            const nameEl = document.createElement('div');
+            nameEl.className = 'subject-name-display';
+            nameEl.innerHTML = '<span class="subject-chevron">▶</span> ' + displayName;
+            header.appendChild(nameEl);
+
+            const countEl = document.createElement('span');
+            countEl.className = 'subject-task-count';
+            countEl.textContent = taskCount > 0 ? doneCount + '/' + taskCount : '0 tasks';
+            header.appendChild(countEl);
+
+            const removeSubjBtn = document.createElement('button');
+            removeSubjBtn.type = 'button';
+            removeSubjBtn.className = 'btn-icon';
+            removeSubjBtn.textContent = '✕';
+            removeSubjBtn.title = 'Remove from this day';
+            removeSubjBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm('Remove "' + displayName + '" from ' + DAYS[dayIdx].name + '?')) {
+                    playRemove();
+                    days[dayIdx].splice(subjIdx, 1);
+                    saveToStorage();
+                    renderPage();
+                }
+            });
+            header.appendChild(removeSubjBtn);
+            block.appendChild(header);
+
+            const body = document.createElement('div');
+            body.className = 'subject-body';
+
+            const taskList = document.createElement('div');
+            taskList.className = 'task-list';
+
+            if (daySubject.tasks.length === 0) {
+                const hint = document.createElement('div');
+                hint.className = 'empty-hint';
+                hint.textContent = 'No tasks yet — add some from the bank below';
+                taskList.appendChild(hint);
+            } else {
+                daySubject.tasks.forEach(function(task, taskIdx) {
+                    taskList.appendChild(renderTaskItem(dayIdx, subjIdx, taskIdx, task));
+                });
+            }
+            body.appendChild(taskList);
+
+            const addTaskBtn = document.createElement('button');
+            addTaskBtn.type = 'button';
+            addTaskBtn.className = 'btn-add-task';
+            if (!bankSubj || bankSubj.tasks.length === 0) {
+                addTaskBtn.disabled = true;
+                addTaskBtn.textContent = '＋ Add task · bank is empty';
+            } else {
+                addTaskBtn.textContent = '＋ Add task from bank';
+                addTaskBtn.addEventListener('click', function() { playAdd(); openTaskPicker(dayIdx, subjIdx, bankSubj); });
+            }
+            body.appendChild(addTaskBtn);
+
+            block.appendChild(body);
+            return block;
+        }
+
+        // ---- TASK ITEM ----
+        function renderTaskItem(dayIdx, subjIdx, taskIdx, task) {
+            if (!Array.isArray(task.links)) task.links = [];
+            if (!Array.isArray(task.notes)) task.notes = [];
+
+            const item = document.createElement('div');
+            item.className = 'task-item' + (task.done ? ' done' : '');
+
+            const mainRow = document.createElement('div');
+            mainRow.className = 'task-main-row';
+
+            const checkBtn = document.createElement('button');
+            checkBtn.type = 'button';
+            checkBtn.className = 'task-check' + (task.done ? ' done' : '');
+            checkBtn.textContent = task.done ? '✓' : '';
+            checkBtn.addEventListener('click', function() {
+                task.done = !task.done;
+                saveToStorage();
+                if (task.done) { playCheck(); celebrate(); } else { playUncheck(); }
+                renderPage();
+            });
+            mainRow.appendChild(checkBtn);
+
+            const text = document.createElement('div');
+            text.className = 'task-text-display';
+            text.textContent = task.text;
+            mainRow.appendChild(text);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'task-remove';
+            removeBtn.textContent = '✕';
+            removeBtn.title = 'Remove task';
+            removeBtn.addEventListener('click', function() {
+                if (confirm('Remove this task?')) {
+                    playRemove();
+                    days[dayIdx][subjIdx].tasks.splice(taskIdx, 1);
+                    saveToStorage();
+                    renderPage();
+                }
+            });
+            mainRow.appendChild(removeBtn);
+            item.appendChild(mainRow);
+
+            item.appendChild(buildExtrasSection(task, function() { saveToStorage(); renderPage(); }));
+            return item;
+        }
+
+        function buildExtrasSection(task, onUpdate) {
+            const extras = document.createElement('div');
+            extras.className = 'task-extras';
+
+            const totalExtras = task.links.length + task.notes.length;
+            const toggleBtn = document.createElement('button');
+            toggleBtn.type = 'button';
+            toggleBtn.className = 'extras-toggle';
+            toggleBtn.innerHTML = '📎 Links & Notes' + (totalExtras > 0 ? ' <span class="badge">' + totalExtras + '</span>' : '');
+            extras.appendChild(toggleBtn);
+
+            const panel = document.createElement('div');
+            panel.className = 'extras-panel';
+            panel.style.display = totalExtras > 0 ? 'flex' : 'none';
+
+            task.links.forEach(function(link, linkIdx) {
+                panel.appendChild(renderLinkRow(task, link, linkIdx, onUpdate));
+            });
+            task.notes.forEach(function(note, noteIdx) {
+                panel.appendChild(renderNoteRow(task, note, noteIdx, onUpdate));
+            });
+
+            const addRow = document.createElement('div');
+            addRow.className = 'extras-add-row';
+
+            const addLinkBtn = document.createElement('button');
+            addLinkBtn.type = 'button';
+            addLinkBtn.className = 'extras-add-btn';
+            addLinkBtn.textContent = '🔗 + Link';
+            addLinkBtn.addEventListener('click', function() {
+                playAdd();
+                task.links.push({ id: genId(), url: '' });
+                onUpdate();
+            });
+            addRow.appendChild(addLinkBtn);
+
+            const addNoteBtn = document.createElement('button');
+            addNoteBtn.type = 'button';
+            addNoteBtn.className = 'extras-add-btn note-add';
+            addNoteBtn.textContent = '📝 + Note';
+            addNoteBtn.addEventListener('click', function() {
+                playAdd();
+                task.notes.push({ id: genId(), text: '' });
+                onUpdate();
+            });
+            addRow.appendChild(addNoteBtn);
+
+            panel.appendChild(addRow);
+            extras.appendChild(panel);
+
+            toggleBtn.addEventListener('click', function() {
+                const isHidden = panel.style.display === 'none';
+                panel.style.display = isHidden ? 'flex' : 'none';
+                if (isHidden) playOpen(); else playClose();
+            });
+
+            return extras;
+        }
+
+        function renderLinkRow(task, link, linkIdx, onUpdate) {
+            const row = document.createElement('div');
+            row.className = 'link-item';
+
+            const icon = document.createElement('span');
+            icon.className = 'link-icon';
+            icon.textContent = '🔗';
+            row.appendChild(icon);
+
+            const urlInput = document.createElement('input');
+            urlInput.className = 'link-input';
+            urlInput.type = 'text';
+            urlInput.placeholder = 'Paste URL (https://…)';
+            urlInput.value = link.url || '';
+            urlInput.addEventListener('input', function(e) {
+                link.url = e.target.value;
+                saveToStorage();
+            });
+            row.appendChild(urlInput);
+
+            const openBtn = document.createElement('a');
+            openBtn.className = 'link-open';
+            openBtn.textContent = 'Open';
+            openBtn.target = '_blank';
+            openBtn.rel = 'noopener noreferrer';
+            openBtn.href = 'javascript:void(0)';
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                playClick();
+                let url = (link.url || '').trim();
+                if (!url) { alert('Paste a URL first'); return; }
+                if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+                window.open(url, '_blank', 'noopener,noreferrer');
+            });
+            row.appendChild(openBtn);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'remove-mini';
+            removeBtn.textContent = '✕';
+            removeBtn.addEventListener('click', function() {
+                playRemove();
+                task.links.splice(linkIdx, 1);
+                onUpdate();
+            });
+            row.appendChild(removeBtn);
+
+            return row;
+        }
+
+        function renderNoteRow(task, note, noteIdx, onUpdate) {
+            const row = document.createElement('div');
+            row.className = 'note-item';
+
+            const icon = document.createElement('span');
+            icon.className = 'link-icon';
+            icon.textContent = '📝';
+            row.appendChild(icon);
+
+            const textarea = document.createElement('textarea');
+            textarea.className = 'note-textarea';
+            textarea.placeholder = 'Write a note…';
+            textarea.rows = 1;
+            textarea.value = note.text || '';
+            textarea.addEventListener('input', function(e) {
+                note.text = e.target.value;
+                e.target.style.height = 'auto';
+                e.target.style.height = Math.min(e.target.scrollHeight, 180) + 'px';
+                saveToStorage();
+            });
+            row.appendChild(textarea);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'remove-mini';
+            removeBtn.textContent = '✕';
+            removeBtn.addEventListener('click', function() {
+                playRemove();
+                task.notes.splice(noteIdx, 1);
+                onUpdate();
+            });
+            row.appendChild(removeBtn);
+
+            setTimeout(function() {
+                textarea.style.height = 'auto';
+                textarea.style.height = Math.min(textarea.scrollHeight, 180) + 'px';
+            }, 0);
+
+            return row;
+        }
+
+        function updateDayProgress(dayIdx) {
+            const prog = document.getElementById('day-progress-' + dayIdx);
+            if (!prog) return;
+            let total = 0, done = 0;
+            days[dayIdx].forEach(function(subj) {
+                subj.tasks.forEach(function(t) { total++; if (t.done) done++; });
+            });
+            if (total === 0) { prog.textContent = 'No tasks yet'; prog.classList.remove('complete'); return; }
+            if (done === total) {
+                prog.classList.add('complete');
+                prog.textContent = '🏆 ' + done + '/' + total + ' — COMPLETE';
+                if (!badges[dayIdx]) {
+                    badges[dayIdx] = true;
+                    saveToStorage();
+                    celebrateFullDay(dayIdx);
+                }
+            } else {
+                prog.classList.remove('complete');
+                prog.textContent = done + ' / ' + total + ' tasks done';
+            }
+        }
+
+        // ---- SUBJECT PICKER ----
+        function openSubjectPicker(dayIdx) {
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            const box = document.createElement('div');
+            box.className = 'modal-box';
+
+            const h = document.createElement('div');
+            h.className = 'modal-title';
+            h.textContent = 'Pick an activity for ' + DAYS[dayIdx].name;
+            box.appendChild(h);
+
+            if (subjectBank.length === 0) {
+                const e = document.createElement('div');
+                e.className = 'modal-empty';
+                e.textContent = 'Your bank is empty. Create your first activity below, or go to 📋 Task Banks first.';
+                box.appendChild(e);
+            } else {
+                subjectBank.forEach(function(bs) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'modal-item';
+                    btn.textContent = bs.name + (bs.tasks.length ? '  ·  ' + bs.tasks.length + ' tasks' : '  ·  no tasks yet');
+                    btn.addEventListener('click', function() {
+                        playAdd();
+                        addDaySubject(dayIdx, bs.id);
+                        document.body.removeChild(overlay);
+                    });
+                    box.appendChild(btn);
+                });
+            }
+
+            const createBtn = document.createElement('button');
+            createBtn.type = 'button';
+            createBtn.className = 'modal-item special';
+            createBtn.textContent = '✦ Create a new activity / person';
+            createBtn.addEventListener('click', function() {
+                const name = prompt('Name (e.g. Emma, Leo, Mia, Mom\'s Me-Time, School Run):');
+                if (!name || !name.trim()) return;
+                const bs = { id: genId(), name: name.trim(), tasks: [] };
+                const n = name.toLowerCase();
+                if (n.includes('emma')) bs.category = 'kid1';
+                else if (n.includes('leo')) bs.category = 'kid2';
+                else if (n.includes('mia')) bs.category = 'kid3';
+                else if (n.includes('mom') || n.includes('me-time') || n.includes('self')) bs.category = 'mom';
+                subjectBank.push(bs);
+                addDaySubject(dayIdx, bs.id);
+                saveToStorage();
+                document.body.removeChild(overlay);
+                playAdd();
+            });
+            box.appendChild(createBtn);
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.type = 'button';
+            cancelBtn.className = 'modal-cancel';
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.addEventListener('click', function() { playClose(); document.body.removeChild(overlay); });
+            box.appendChild(cancelBtn);
+
+            overlay.appendChild(box);
+            overlay.addEventListener('click', function(e) { if (e.target === overlay) { playClose(); document.body.removeChild(overlay); } });
+            document.body.appendChild(overlay);
+        }
+
+        function addDaySubject(dayIdx, bankSubjectId) {
+            days[dayIdx].push({ id: genId(), bankSubjectId: bankSubjectId, tasks: [] });
+            saveToStorage();
+            setExpanded(dayIdx, days[dayIdx].length - 1, true);
+            renderPage();
+        }
+
+        // ---- TASK PICKER ----
+        function openTaskPicker(dayIdx, subjIdx, bankSubj) {
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            const box = document.createElement('div');
+            box.className = 'modal-box';
+
+            const h = document.createElement('div');
+            h.className = 'modal-title';
+            h.textContent = '＋ Add task to ' + bankSubj.name;
+            box.appendChild(h);
+
+            if (bankSubj.tasks.length === 0) {
+                const e = document.createElement('div');
+                e.className = 'modal-empty';
+                e.textContent = 'This activity has no tasks in its bank yet. Go to 📋 Task Banks to add some first.';
+                box.appendChild(e);
+            } else {
+                bankSubj.tasks.forEach(function(task) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'modal-item';
+                    btn.textContent = task.text;
+                    btn.addEventListener('click', function() {
+                        const copiedLinks = (task.links || []).map(function(l) { return { id: genId(), url: l.url || '' }; });
+                        const copiedNotes = (task.notes || []).map(function(n) { return { id: genId(), text: n.text || '' }; });
+                        days[dayIdx][subjIdx].tasks.push({
+                            id: genId(),
+                            text: task.text,
+                            done: false,
+                            links: copiedLinks,
+                            notes: copiedNotes
+                        });
+                        saveToStorage();
+                        document.body.removeChild(overlay);
+                        playAdd();
+                        renderPage();
+                    });
+                    box.appendChild(btn);
+                });
+            }
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.type = 'button';
+            cancelBtn.className = 'modal-cancel';
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.addEventListener('click', function() { playClose(); document.body.removeChild(overlay); });
+            box.appendChild(cancelBtn);
+
+            overlay.appendChild(box);
+            overlay.addEventListener('click', function(e) { if (e.target === overlay) { playClose(); document.body.removeChild(overlay); } });
+            document.body.appendChild(overlay);
+        }
+
+        // ---- BANK PAGE ----
+        function renderBankPage() {
+            const wrap = document.createElement('div');
+
+            const title = document.createElement('div');
+            title.className = 'bank-title';
+            title.textContent = '📋 Task Banks';
+            wrap.appendChild(title);
+
+            const sub = document.createElement('div');
+            sub.className = 'bank-sub';
+            sub.textContent = 'Organize by person: kids, school, and mom\'s own time';
+            wrap.appendChild(sub);
+
+            const addBankSubjBtn = document.createElement('button');
+            addBankSubjBtn.type = 'button';
+            addBankSubjBtn.className = 'btn-add-bank-subject';
+            addBankSubjBtn.textContent = '＋ Add new activity / person';
+            addBankSubjBtn.addEventListener('click', function() {
+                const name = prompt('Name (e.g. Emma, Leo, Mia, Mom\'s Me-Time, School Run):');
+                if (!name || !name.trim()) return;
+                const bs = { id: genId(), name: name.trim(), tasks: [] };
+                const n = name.toLowerCase();
+                if (n.includes('emma')) bs.category = 'kid1';
+                else if (n.includes('leo')) bs.category = 'kid2';
+                else if (n.includes('mia')) bs.category = 'kid3';
+                else if (n.includes('mom') || n.includes('me-time') || n.includes('self')) bs.category = 'mom';
+                subjectBank.push(bs);
+                saveToStorage();
+                playAdd();
+                renderPage();
+            });
+            wrap.appendChild(addBankSubjBtn);
+
+            if (subjectBank.length === 0) {
+                const hint = document.createElement('div');
+                hint.className = 'empty-hint';
+                hint.style.padding = '26px';
+                hint.textContent = 'No activities yet. Add your first one above!';
+                wrap.appendChild(hint);
+            } else {
+                subjectBank.forEach(function(bs, bsIdx) {
+                    wrap.appendChild(renderBankSubjectCard(bs, bsIdx));
+                });
+            }
+            return wrap;
+        }
+
+        function renderBankSubjectCard(bs, bsIdx) {
+            const card = document.createElement('div');
+            card.className = 'bank-subject-card';
+
+            const header = document.createElement('div');
+            header.className = 'bank-subject-header';
+
+            const nameInput = document.createElement('input');
+            nameInput.className = 'bank-subject-name-input';
+            nameInput.type = 'text';
+            nameInput.value = bs.name;
+            nameInput.addEventListener('input', function(e) {
+                bs.name = e.target.value;
+                saveToStorage();
+            });
+            header.appendChild(nameInput);
+
+            const removeSubjBtn = document.createElement('button');
+            removeSubjBtn.type = 'button';
+            removeSubjBtn.className = 'btn-icon';
+            removeSubjBtn.textContent = '✕';
+            removeSubjBtn.title = 'Delete this activity from the bank';
+            removeSubjBtn.addEventListener('click', function() {
+                if (confirm('Delete "' + bs.name + '" and all its tasks?\n\nDays using it will show as "Unknown activity".')) {
+                    playRemove();
+                    subjectBank.splice(bsIdx, 1);
+                    saveToStorage();
+                    renderPage();
+                }
+            });
+            header.appendChild(removeSubjBtn);
+            card.appendChild(header);
+
+            if (bs.tasks.length === 0) {
+                const hint = document.createElement('div');
+                hint.className = 'empty-hint';
+                hint.textContent = 'No tasks in this bank — add one below.';
+                card.appendChild(hint);
+            } else {
+                bs.tasks.forEach(function(task, taskIdx) {
+                    if (!Array.isArray(task.links)) task.links = [];
+                    if (!Array.isArray(task.notes)) task.notes = [];
+
+                    const item = document.createElement('div');
+                    item.className = 'bank-item';
+
+                    const mainRow = document.createElement('div');
+                    mainRow.className = 'bank-main-row';
+
+                    const text = document.createElement('input');
+                    text.className = 'bank-task-input';
+                    text.type = 'text';
+                    text.value = task.text;
+                    text.addEventListener('input', function(e) { task.text = e.target.value; saveToStorage(); });
+                    mainRow.appendChild(text);
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.type = 'button';
+                    removeBtn.className = 'task-remove';
+                    removeBtn.textContent = '✕';
+                    removeBtn.addEventListener('click', function() {
+                        if (confirm('Remove this task from the bank?')) {
+                            playRemove();
+                            bs.tasks.splice(taskIdx, 1);
+                            saveToStorage();
+                            renderPage();
+                        }
+                    });
+                    mainRow.appendChild(removeBtn);
+                    item.appendChild(mainRow);
+
+                    item.appendChild(buildExtrasSection(task, function() {
+                        saveToStorage();
+                        renderPage();
+                    }));
+
+                    card.appendChild(item);
+                });
+            }
+
+            const addRow = document.createElement('div');
+            addRow.className = 'bank-add-row';
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.placeholder = 'New task for ' + (bs.name || 'this activity') + '…';
+            addRow.appendChild(newInput);
+            const addBtn = document.createElement('button');
+            addBtn.type = 'button';
+            addBtn.textContent = 'Add';
+            addBtn.addEventListener('click', function() {
+                const val = newInput.value.trim();
+                if (!val) return;
+                bs.tasks.push({ id: genId(), text: val, links: [], notes: [] });
+                saveToStorage();
+                playAdd();
+                renderPage();
+            });
+            newInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') addBtn.click(); });
+            addRow.appendChild(addBtn);
+            card.appendChild(addRow);
+
+            return card;
+        }
+
+        // ---- REWARDS PAGE ----
+        function renderRewardsPage() {
+            const wrap = document.createElement('div');
+
+            const title = document.createElement('div');
+            title.className = 'rewards-title';
+            title.textContent = '🏆 Rewards';
+            wrap.appendChild(title);
+
+            const sub = document.createElement('div');
+            sub.className = 'rewards-sub';
+            sub.textContent = 'Complete all tasks in a day to earn its badge. Collect badges to unlock special treats for mom!';
+            wrap.appendChild(sub);
+
+            let earnedCount = 0;
+            for (let d = 0; d < 7; d++) if (badges[d]) earnedCount++;
+
+            const summary = document.createElement('div');
+            summary.className = 'rewards-summary';
+
+            const stat1 = document.createElement('div');
+            stat1.className = 'rewards-stat';
+            stat1.innerHTML = '<div class="num">' + earnedCount + '</div><div class="label">Badges</div>';
+            summary.appendChild(stat1);
+
+            const stat2 = document.createElement('div');
+            stat2.className = 'rewards-stat';
+            stat2.innerHTML = '<div class="num">' + earnedCount + '/7</div><div class="label">Progress</div>';
+            summary.appendChild(stat2);
+
+            wrap.appendChild(summary);
+
+            const badgesGrid = document.createElement('div');
+            badgesGrid.className = 'badges-grid';
+
+            DAYS.forEach(function(day, d) {
+                const isEarned = !!badges[d];
+                const card = document.createElement('div');
+                card.className = 'badge-card' + (isEarned ? ' earned' : '');
+
+                card.innerHTML =
+                    '<div class="badge-emoji">' + day.badge + '</div>' +
+                    '<div class="badge-name">' + day.badgeName + '</div>' +
+                    '<div class="badge-day">' + day.emoji + ' ' + day.name + '</div>' +
+                    (isEarned ? '<div class="badge-check">✅</div>' : '<div class="badge-lock">🔒</div>');
+
+                badgesGrid.appendChild(card);
+            });
+            wrap.appendChild(badgesGrid);
+
+            const giftSection = document.createElement('div');
+            giftSection.className = 'gift-section';
+
+            const giftTitle = document.createElement('div');
+            giftTitle.className = 'gift-title';
+            giftTitle.textContent = '🎁 Mom\'s Reward Progress';
+            giftSection.appendChild(giftTitle);
+
+            const giftDesc = document.createElement('div');
+            giftDesc.className = 'gift-desc';
+            giftDesc.textContent = 'Collect badges to unlock special treats for yourself!';
+            giftSection.appendChild(giftDesc);
+
+            let nextGift = null;
+            let allUnlocked = true;
+            for (let i = 0; i < GIFTS.length; i++) {
+                if (earnedCount < GIFTS[i].required) {
+                    nextGift = GIFTS[i];
+                    allUnlocked = false;
+                    break;
+                }
+            }
+
+            if (nextGift) {
+                const progressPct = Math.min(100, Math.round((earnedCount / nextGift.required) * 100));
+
+                const outer = document.createElement('div');
+                outer.className = 'gift-progress-outer';
+                const inner = document.createElement('div');
+                inner.className = 'gift-progress-inner';
+                inner.style.width = progressPct + '%';
+                inner.textContent = progressPct >= 15 ? progressPct + '%' : '';
+                outer.appendChild(inner);
+                giftSection.appendChild(outer);
+
+                const label = document.createElement('div');
+                label.className = 'gift-progress-label';
+                label.textContent = earnedCount + ' / ' + nextGift.required + ' badges · ' + nextGift.emoji + ' ' + nextGift.name;
+                giftSection.appendChild(label);
+            }
+
+            GIFTS.forEach(function(gift) {
+                const unlocked = earnedCount >= gift.required;
+                const giftBox = document.createElement('div');
+                giftBox.className = 'gift-unlock';
+                if (!unlocked) {
+                    giftBox.style.opacity = '0.55';
+                    giftBox.style.filter = 'grayscale(0.6)';
+                }
+                giftBox.innerHTML =
+                    '<div class="gift-emoji">' + (unlocked ? gift.emoji : '🔒') + '</div>' +
+                    '<div class="gift-msg">' + (unlocked ? 'UNLOCKED: ' + gift.name : gift.name) + '</div>' +
+                    '<div class="gift-hint">' + (unlocked ? '🎉 You earned this!' : gift.hint) + '</div>';
+                giftSection.appendChild(giftBox);
+            });
+
+            if (allUnlocked && earnedCount >= 7) {
+                const congrats = document.createElement('div');
+                congrats.className = 'gift-unlock';
+                congrats.style.marginTop = '12px';
+                congrats.innerHTML =
+                    '<div class="gift-emoji">👑</div>' +
+                    '<div class="gift-msg">SUPER MOM STATUS!</div>' +
+                    '<div class="gift-hint">You collected every badge — time to celebrate YOU! 🎉</div>';
+                giftSection.appendChild(congrats);
+            }
+
+            wrap.appendChild(giftSection);
+            return wrap;
+        }
+
+        // ---- INIT ----
+        loadFromStorage();
+
+        if (subjectBank.length === 0 && days.length === 7 && days.every(function(d) { return d.length === 0; })) {
+            const seed = [
+                { name: '👧 Emma (7)', category: 'kid1', tasks: ['School pick-up', 'Homework help', 'Bath time', 'Bedtime story'] },
+                { name: '👦 Leo (5)', category: 'kid2', tasks: ['Kindergarten drop-off', 'Playdate', 'Nap time', 'Snack prep'] },
+                { name: '🧒 Mia (3)', category: 'kid3', tasks: ['Morning cuddle', 'Toddler activity', 'Nap time', 'Bedtime routine'] },
+                { name: '💆 Mom\'s Me-Time', category: 'mom', tasks: ['Morning coffee ☕', '10-min stretch', 'Read a page', 'Evening wind-down'] },
+                { name: '🏠 Household', category: '', tasks: ['Laundry', 'Meal prep', 'Tidy up', 'Grocery list'] }
+            ];
+            seed.forEach(function(s) {
+                subjectBank.push({
+                    id: genId(),
+                    name: s.name,
+                    category: s.category,
+                    tasks: s.tasks.map(function(t) { return { id: genId(), text: t, links: [], notes: [] }; })
+                });
+            });
+
+            days[0] = [
+                { id: genId(), bankSubjectId: subjectBank[0].id, tasks: [] },
+                { id: genId(), bankSubjectId: subjectBank[3].id, tasks: [] }
+            ];
+            days[0].forEach(function(daySubj) {
+                const bank = subjectBank.find(function(b) { return b.id === daySubj.bankSubjectId; });
+                if (bank) {
+                    bank.tasks.forEach(function(t) {
+                        daySubj.tasks.push({
+                            id: genId(),
+                            text: t.text,
+                            done: false,
+                            links: [],
+                            notes: []
+                        });
+                    });
+                }
+            });
+
+            saveToStorage();
+        }
+
+        if (days.length !== 7) {
+            const fresh = [];
+            for (let i = 0; i < 7; i++) fresh.push(Array.isArray(days[i]) ? days[i] : []);
+            days = fresh;
+        }
+
+        renderNav();
+        renderPage();
+
+        window.addEventListener('beforeunload', saveToStorage);
+
+        let welcomed = false;
+        document.body.addEventListener('click', function() {
+            if (!welcomed) { playTone(660, 0.08, 'sine'); welcomed = true; }
+        }, { once: false });
+    })();
+    </script>
+</body>
+</html>
